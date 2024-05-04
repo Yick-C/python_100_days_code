@@ -15,8 +15,12 @@ resources = {
     "coffee": 100,
 }
 
-def calculateMoney(quarters, dimes, nickles, pennies):
-    total = (quarters * QUARTERS) + (dimes * DIMES) + (nickles * NICKLES) + (pennies * PENNIES)
+def calculateMoney():
+    print("Please insert coins. ")
+    total = int(input("how many quarters?: ")) * QUARTERS
+    total += int(input("how many dimes?: ")) * DIMES
+    total += int(input("how many nickles?: ")) * NICKLES
+    total += int(input("how many pennies?: ")) * PENNIES
     return total
 
 def checkResources(order):
@@ -32,7 +36,7 @@ def checkResources(order):
 def makeCoffee(order):
     ingredients = MENU[order]["ingredients"]
     for resource in ingredients:
-        resources[resource] = resources[resource] - MENU[order]["ingredients"][resource]
+        resources[resource] -= MENU[order]["ingredients"][resource]
 
 while not isOff:
     # Prompt user by asking “What would you like? (espresso/latte/cappuccino):”
@@ -55,19 +59,14 @@ while not isOff:
             print(f"Okay you have ordered one {order}.\n")
 
             # Process coins.
-            print("Please insert coins. ")
-            quarters = int(input("how many quarters?: "))
-            dimes = int(input("how many dimes?: "))
-            nickles = int(input("how many nickles?: "))
-            pennies = int(input("how many pennies?: "))
-            moneyPaid = calculateMoney(quarters, dimes, nickles, pennies)
+            moneyPaid = calculateMoney()
 
             if moneyPaid > MENU[order]["cost"]:
                 profit += moneyPaid
                 change = round(moneyPaid - MENU[order]["cost"], 2)
                 print(f"Here is ${change} in change.\n")
 
-                makeCoffee()
+                makeCoffee(order)
                 print(f"Here is your {order} ☕. Enjoy!")
             else:
                 print("Sorry that's not enough money. Money refunded.")
