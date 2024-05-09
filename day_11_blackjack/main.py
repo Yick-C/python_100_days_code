@@ -42,7 +42,7 @@ def calculateSum(cards):
     return sum(cards)
 
 def compareScore(userScore, dealerScore):
-    """ Given two scores, compare which one wins blackjack and return a print statement """
+    """ Given two scores, compare which one wins day_11_blackjack and return a print statement """
     if userScore > 21 and dealerScore > 21:
         return "You went over. You lose "
 
@@ -78,7 +78,7 @@ def play_game():
         print(f"Your cards: {usersCards}, current score: {userSum}")
         print(f"Dealer's first card: {dealersCards[0]}")
 
-        # Check if the user or dealer has blackjack, or if the user has a score
+        # Check if the user or dealer has day_11_blackjack, or if the user has a score
         # of over 21. If not, asks the user if they want to draw another card
         if userSum == 0 or dealerSum == 0 or userSum > 21:
             game_has_ended = True
