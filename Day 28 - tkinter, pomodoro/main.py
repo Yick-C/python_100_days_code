@@ -37,7 +37,7 @@ def start_timer():
     # Pushes window to the front when the countdown is over
     window.attributes('-topmost', True)
     window.attributes('-topmost', False)
-    # window.bell()  # alert sound
+    window.bell()  # alert sound
 
     if reps % 8 == 0:  # if its 8th rep
         countdown(long_break_sec)
