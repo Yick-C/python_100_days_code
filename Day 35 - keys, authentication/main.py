@@ -34,4 +34,4 @@ if will_rain:
     #     from_="+12345678901",
     #     to="+441234567890",
     # )
-    print("Bring an umbrella.")
+    print("Bring an umbrella")
