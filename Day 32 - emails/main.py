@@ -6,14 +6,14 @@ password = ""
 
 # GMAIL: smtp.gmail.com
 # HOTMAIL: smtp.office365.com
-# with smtplib.SMTP("smtp-mail.outlook.com", 587) as connection:
-#     connection.starttls()  # Secure connection
-#     connection.login(user=my_email, password=password)
-#     connection.sendmail(
-#         from_addr=my_email,
-#         to_addrs="",
-#         msg="Subject: Hello\n\n This is the body of my email"
-#     )
+with smtplib.SMTP("smtp.gmail.com") as connection:
+    connection.starttls()  # Secure connection
+    connection.login(user=my_email, password=password)
+    connection.sendmail(
+        from_addr=my_email,
+        to_addrs="",
+        msg="Subject: Hello\n\n This is the body of my email"
+    )
 
 # =========================================== #
 import datetime as dt
