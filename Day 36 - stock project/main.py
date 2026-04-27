@@ -26,14 +26,19 @@ print(yesterday_stock)
 print(before_yesterday_stock)
 
 # Find the positive difference between 1 and 2. e.g. 40 - 20 = -20, but the positive difference is 20. Hint: https://www.w3schools.com/python/ref_func_abs.asp
-difference = abs(yesterday_stock - before_yesterday_stock)
+difference = yesterday_stock - before_yesterday_stock
+increase_decrease = None
+if difference > 0:
+    increase_decrease = "▲"
+else:
+    increase_decrease = "▼"
 
 # Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
-diff_percent = (difference / yesterday_stock) * 100
+diff_percent = round((difference / yesterday_stock) * 100)
 print(diff_percent)
 
 # If percentage is greater than 5 then print("Get News").
-if diff_percent > 5.0:
+if abs(diff_percent) > 5.0:
     print("Get News")
 
     # Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
@@ -46,8 +51,11 @@ if diff_percent > 5.0:
     news_data = news_res.json()["articles"]
 
     top_3_news = news_data[:3]  # Use Python slice operator to create a list that contains the first 3 articles.
-    news_list = [f"Headline: {article["title"]} \nBrief: {article["description"]}" for article in top_3_news]
+    news_list = [
+        f"{STOCK_NAME}: {increase_decrease}{diff_percent}% \nHeadline: {article["title"]} \nBrief: {article["description"]}"
+        for article in top_3_news]
     print(news_list)
+
 else:
     print("Small percentage")
 
@@ -56,7 +64,6 @@ else:
 
 
 #TODO 9. - Send each article as a separate message via Twilio. 
-
 
 
 #Optional TODO: Format the message like this: 
